@@ -1,0 +1,34 @@
+body {
+  font-family: 'Courier New', Monospace;
+  background: #1a1a1a;
+  color: #ddd;
+}
+
+header,
+main {
+  margin: 5em auto 0;
+  width: 44em;
+  white-space: pre;
+}
+
+header {}
+main {
+  position: relative;
+  text-align: center;
+}
+main .hangman {
+  position: relative;
+  font-size: xx-large;
+  font-weight: bold;
+}
+main .hangman--shadow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: #333;
+}
+
+main .word,
+main .letters {
+  margin-top: 2em;
+}

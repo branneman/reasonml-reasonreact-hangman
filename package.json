@@ -1,0 +1,27 @@
+{
+  "name": "reasonml-reasonreact-hangman",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "webpack": "webpack -w"
+  },
+  "keywords": [
+    "ReasonML",
+    "ReasonReact",
+    "BuckleScript",
+    "Hangman"
+  ],
+  "author": "Bran van der Meer <bran.vd.meer@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "reason-react": ">=0.3.0"
+  },
+  "devDependencies": {
+    "bs-platform": "^2.1.0",
+    "webpack": "^3.8.1"
+  }
+}
