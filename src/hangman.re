@@ -1,16 +1,10 @@
 /**
- * Utils
- */
-let str = ReasonReact.stringToElement;
-
-/**
- * Constants
+ * Data
  */
 let wordList = [
   "react",
   "reasonml",
-  "rotterdam",
-  ""
+  "rotterdam"
 ];
 let hangmanTemplate = [
   "       \n       \n       \n       \n       \n       \n         ",
@@ -25,6 +19,19 @@ let hangmanTemplate = [
   "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",
   "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n=========",
 ];
+
+/**
+ * Hangman functions
+ */
+let getErrorLetters = (word) =>
+  List.filter((letter) =>
+    !String.contains(word, letter));
+let getConstructedWord = (word) =>
+  (letters) =>
+    String.map((wc) =>
+      List.exists((lc) => wc === lc, letters) ? wc : '_',
+      word
+    );
 
 /**
  * Component
@@ -53,7 +60,8 @@ let make = (_children) => {
       | Letter => ReasonReact.Update({...state, letters: ['a', ...state.letters]})
     },
 
-  render: (self) =>
+  render: (self) => {
+    let str = ReasonReact.stringToElement;
     <div>
       <div className="hangman hangman--shadow">
         (str(List.nth(hangmanTemplate, 10)))
@@ -64,5 +72,6 @@ let make = (_children) => {
       <div className="word">(str(self.state.word))</div>
       <div className="letters">(str(""))</div>
     </div>
+  }
 
 };
