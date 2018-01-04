@@ -1,7 +1,10 @@
+Random.self_init();
+
 /**
  * Data
  */
 let wordList = [
+  "awesomeness",
   "react",
   "reasonml",
   "rotterdam"
@@ -21,6 +24,12 @@ let hangmanTemplate = [
 ];
 
 /**
+ * Utils
+ */
+let join = (str, list) => String.concat(str, List.map(String.make(1), list));
+let str = ReasonReact.stringToElement;
+
+/**
  * Hangman functions
  */
 let getErrorLetters = (word) =>
@@ -29,12 +38,12 @@ let getErrorLetters = (word) =>
 let getConstructedWord = (word) =>
   (letters) =>
     String.map((wc) =>
-      List.exists((lc) => wc === lc, letters) ? wc : '_',
+      List.exists((lc) => wc === lc, letters) ? wc : '.',
       word
     );
 
 /**
- * Component
+ * Component: Hangman
  */
 type action =
   | Letter;
@@ -51,8 +60,8 @@ let make = (_children) => {
   ...component,
 
   initialState: () => {
-    word: "reasonml",
-    letters: ['q', 'z']
+    word: List.nth(wordList, Random.int(List.length(wordList))),
+    letters: ['r', 'e', 't', 'q']
   },
 
   reducer: (action, state) =>
@@ -61,17 +70,21 @@ let make = (_children) => {
     },
 
   render: (self) => {
-    let str = ReasonReact.stringToElement;
+
+    let errorLetters = getErrorLetters(self.state.word, self.state.letters);
+    let constructedWord = getConstructedWord(self.state.word, self.state.letters);
+
     <div>
       <div className="hangman hangman--shadow">
         (str(List.nth(hangmanTemplate, 10)))
       </div>
       <div className="hangman">
-        (str(List.nth(hangmanTemplate, 2)))
+        (str(List.nth(hangmanTemplate, List.length(errorLetters))))
+        <div className="word">(str(constructedWord))</div>
       </div>
-      <div className="word">(str(self.state.word))</div>
-      <div className="letters">(str(""))</div>
+      <div className="letters">(str(join("\n", errorLetters)))</div>
     </div>
+
   }
 
 };

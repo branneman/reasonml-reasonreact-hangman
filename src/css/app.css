@@ -7,7 +7,7 @@ body {
 header,
 main {
   margin: 5em auto 0;
-  width: 44em;
+  width: 43em;
   white-space: pre;
 }
 
@@ -25,10 +25,16 @@ main .hangman--shadow {
   position: absolute;
   left: 0;
   right: 0;
-  color: #333;
+  color: #222;
 }
 
 main .word,
 main .letters {
   margin-top: 2em;
+}
+main .letters {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1em;
 }
