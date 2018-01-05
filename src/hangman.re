@@ -1,3 +1,4 @@
+open Webapi.Dom;
 Random.self_init();
 
 /**
@@ -46,7 +47,7 @@ let getConstructedWord = (word) =>
  * Component: Hangman
  */
 type action =
-  | Letter;
+  | Letter(char);
 
 type state = {
   word: string,
@@ -61,13 +62,22 @@ let make = (_children) => {
 
   initialState: () => {
     word: List.nth(wordList, Random.int(List.length(wordList))),
-    letters: ['r', 'e', 't', 'q']
+    letters: []
   },
 
   reducer: (action, state) =>
     switch action {
-      | Letter => ReasonReact.Update({...state, letters: ['a', ...state.letters]})
+      | Letter(c) => ReasonReact.Update({...state, letters: [c, ...(state.letters)]});
     },
+
+  didMount: (self) => {
+    document |> Document.addEventListener("keypress", (_) => {
+      let keyCode: char = ([%bs.raw {| arguments[0].key |}]).[0]; /* TODO: ReactEventRe.Keyboard.which(event) */
+      self.reduce(() => Letter(keyCode), ());
+      ();
+    });
+    ReasonReact.NoUpdate
+  },
 
   render: (self) => {
 
