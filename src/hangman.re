@@ -9,7 +9,7 @@ let wordList = [
   "react",
   "reasonml",
   "rotterdam"
-];
+]; /* TODO: [@bs.module] external wordList : list(string) = "./wordlist.json"; */
 let hangmanTemplate = [
   "       \n       \n       \n       \n       \n       \n         ",
   "       \n       \n       \n       \n       \n       \n=========",
@@ -80,7 +80,6 @@ let make = (_children) => {
   },
 
   render: (self) => {
-
     let errorLetters = getErrorLetters(self.state.word, self.state.letters);
     let constructedWord = getConstructedWord(self.state.word, self.state.letters);
 
