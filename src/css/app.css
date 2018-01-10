@@ -28,8 +28,7 @@ main .hangman--shadow {
   color: #222;
 }
 
-main .word,
-main .letters {
+main .word {
   margin-top: 2em;
 }
 main .letters {
