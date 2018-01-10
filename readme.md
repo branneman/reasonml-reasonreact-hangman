@@ -1,10 +1,12 @@
 # ReasonML ReasonReact Hangman
 
-Run this project:
+## [Play Hangman](https://branneman.github.io/reasonml-reasonreact-hangman/src/)
 
+## Install:
 ```
+git clone git@github.com:branneman/reasonml-reasonreact-hangman.git
+cd reasonml-reasonreact-hangman
 npm install
-npm start
-# in another tab
-npm run webpack
+npm start        # In terminal tab 1
+npm run webpack  # In terminal tab 2
 ```
